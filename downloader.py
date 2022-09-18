@@ -31,13 +31,18 @@ def download(url, length):
     # finding the drscdn.500px... to doqnload the pictures with it
     response = requests.post('https://www.savelink.info/input', cookies=cookies, headers=headers, data=data)
     drscdn_link = response.json()['link'][0]
-    if drscdn_link == 'h':
-        drscdn_link = response.json()['link'][0]
+    # if drscdn_link == 'h':
+    #     flag = True
+        # print(flag)
     print("==================================================")
-    print('[+] downloading from drscdn link:' + drscdn_link)
+    print('[+] downloading from drscdn link: ' + drscdn_link)
     print("==================================================")
     
+    
     # getting that link and send it to 500px.py fro downloading it
-    res = requests.get(drscdn_link)
-    cont = res.content
-    return cont
+    if drscdn_link == 'h':
+        pass
+    else:
+        res = requests.get(drscdn_link)
+        cont = res.content
+        return cont

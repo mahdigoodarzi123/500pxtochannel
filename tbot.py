@@ -15,11 +15,14 @@ bot = Client(
 async def main():
     async with bot:
         for i in range(0,25):
-            # sending the picture to the channel
-            await bot.send_photo(chat_id="@your channel", photo=f'{i}.jpg')
-            print(f'[+] sent {i}.jpg')
-            # removing the picture after sending the photo
-            os.remove(f'{i}.jpg')
+            try:
+                # sending the picture to the channel
+                await bot.send_photo(chat_id="@ponsadpx", photo=f'{i}.jpg')
+                print(f'[+] sent {i}.jpg')
+                # removing the picture after sending the photo
+                os.remove(f'{i}.jpg')
+            except:
+                continue
 
 try:
     fivehundreddl()

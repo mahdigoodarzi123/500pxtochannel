@@ -1,5 +1,6 @@
 import requests
 from downloader import download
+import os
 def fivehundreddl():
     urls= []
 
@@ -64,5 +65,9 @@ def fivehundreddl():
 
     # downloading pictures from urls in the list    
     for i in range(len(urls)):
-        cont = download(url=urls[i], length=len(urls))
-        open(f'{i}.jpg', 'wb').write(cont)
+        try:
+            cont = download(url=urls[i], length=len(urls))
+            open(f'{i}.jpg', 'wb').write(cont)
+        except:
+            os.remove(f'{i}.jpg')
+
