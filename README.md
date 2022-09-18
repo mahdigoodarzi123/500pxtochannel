@@ -1,0 +1,2 @@
+This is a bot for downloading pictures from 500px.com (popular pics) and sending them to a telegram channel
+For using this bot, you need to register in my.telegram.org for getting your API_ID and API_HASH
