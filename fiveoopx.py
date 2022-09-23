@@ -12,11 +12,12 @@ def fivehundreddl():
         '_hjSessionUser_3105627': 'eyJpZCI6IjdlM2M4MzhiLTQ1OWYtNTVlZi1hMWRiLTMxYmNlZGM3MmQ2MCIsImNyZWF0ZWQiOjE2NjI4NzkxODI3MTAsImV4aXN0aW5nIjp0cnVlfQ==',
         'device_uuid': 'e5970330-86fb-4231-b464-b3e8aec4547e',
         '__gads': 'ID=ec8f736e3fa7fd9e-22b8a09a1ece00ef:T=1662992984:S=ALNI_MYl3a5ZZleSVIgBryjE_Va3LuKm5w',
-        '_gid': 'GA1.2.1350792352.1663358765',
-        '_hjSession_3105627': 'eyJpZCI6IjU2YmQ3YmIwLThlNTMtNDE4Yi04MzBjLTRiZDBhZGU1MWU3NiIsImNyZWF0ZWQiOjE2NjMzNTg3Njc5OTUsImluU2FtcGxlIjpmYWxzZX0=',
+        'cto_bundle': 'WPeBcV8ycjJjTnl2WFRTSnkzZUdUcDJLRHNqejJqOEFNcjVxdmxqa21LRFRFV05jUmE2SlA3cHZ1Y0ZSd3NpcGY3JTJCOTVRYU5KMCUyQkxNanolMkZodDE2eTZDWkZGUmM1MU02Q1BYMXFqWXNJOUpJdURUOXJCMVpGakhsQ01ycGJQNUxDM0xjbFglMkJsZEdyMWhyaTJjYXJwQ3l2dHJsUSUzRCUzRA',
+        '_gid': 'GA1.2.117584574.1663839897',
+        '_hjSession_3105627': 'eyJpZCI6IjcwNjczNjA0LWY5OGUtNDI1Yy05YTM5LTdlMDRkZjNiMzFiMyIsImNyZWF0ZWQiOjE2NjM4Mzk5MDU1OTEsImluU2FtcGxlIjpmYWxzZX0=',
         '_hjAbsoluteSessionInProgress': '0',
-        'session_uuid': '2a0b3fbd-928e-444c-b915-dbe0403337aa',
-        '_hpx1': 'BAh7CUkiD3Nlc3Npb25faWQGOgZFVEkiJWU5ZDc3MGEzOTVkNGM3ZTllZDkwYzI3MzU4ZGZmZjhhBjsAVEkiCWhvc3QGOwBGIhlsZWdhY3ktYXBpLjUwMHB4LmNvbUkiFnNlc3Npb25fY2FjaGVfa2V5BjsARkkiKTQ2MmVmYTYxLTY4ZjMtNGRiNi1iYzBiLTg0OTZiOTc1MWQ4YgY7AEZJIhl1c2Vfb25ib2FyZGluZ19tb2RhbAY7AEZU--2f2f5e19eff9659eb00125f6a79a7081aea0ef0c',
+        'session_uuid': '8fd3dcd9-a745-4b18-9884-975a3c53699f',
+        '_hpx1': 'BAh7CUkiD3Nlc3Npb25faWQGOgZFVEkiJTdhM2M4Y2QwMDIxNDczZTdhZGNhYmY2MGYyMTFmOTY0BjsAVEkiCWhvc3QGOwBGIhlsZWdhY3ktYXBpLjUwMHB4LmNvbUkiFnNlc3Npb25fY2FjaGVfa2V5BjsARkkiKTFmZGY4ZjA2LTUyODAtNDA4ZS1hYmQ4LTgyZWVlNGQ2MzJjOQY7AEZJIhl1c2Vfb25ib2FyZGluZ19tb2RhbAY7AEZU--267721649494d13dc186052c31d1630a02c636f2',
     }
 
     headers = {
@@ -36,7 +37,7 @@ def fivehundreddl():
     json_data = {
         'operationName': 'DiscoverPaginationContainerQuery',
         'variables': {
-            'cursor': 'cG9zLTE0OQ==',
+            'cursor': 'cG9zLTk5',
             'filters': [
                 {
                     'key': 'FEATURE_NAME',
@@ -51,23 +52,20 @@ def fivehundreddl():
         },
         'query': 'query DiscoverPaginationContainerQuery($cursor: String, $filters: [PhotoDiscoverSearchFilter!], $sort: PhotoDiscoverSort) {\n  ...DiscoverPaginationContainer_query_1AHL8M\n}\n\nfragment DiscoverPaginationContainer_query_1AHL8M on Query {\n  photos: photoDiscoverSearch(first: 50, after: $cursor, filters: $filters, sort: $sort) {\n    edges {\n      node {\n        id\n        legacyId\n        canonicalPath\n        name\n        description\n        category\n        uploadedAt\n        location\n        width\n        height\n        isLikedByMe\n        notSafeForWork\n        tags\n        photographer: uploader {\n          id\n          legacyId\n          username\n          displayName\n          canonicalPath\n          avatar {\n            images {\n              url\n              id\n            }\n            id\n          }\n          followedBy {\n            totalCount\n            isFollowedByMe\n          }\n        }\n        images(sizes: [33, 35]) {\n          size\n          url\n          jpegUrl\n          webpUrl\n          id\n        }\n        pulse {\n          highest\n          id\n        }\n        __typename\n      }\n      cursor\n    }\n    totalCount\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}\n',
     }
-    # sending a request to 500px api for receiving some data
+
     response = requests.post('https://api.500px.com/graphql', cookies=cookies, headers=headers, json=json_data)
     res_json = response.json()
 
 
     # extracting url from res_json and appending it to a list
-    for i in range(0,25):
-        val = res_json['data']['photos']['edges'][i]["node"]['canonicalPath']
-        url = 'https://500px.com' + val
-        urls.append(url)
+    for i in range(0,23):
+        dl_link = res_json['data']['photos']['edges'][i]["node"]['images'][0]['url']
+        #if the nudity lson is true that picture cintaions nudity
+        nudity = res_json['data']['photos']['edges'][i]["node"]['notSafeForWork']
+        urls.append([dl_link, nudity])
+        # print(dl_link+ '\n')
 
 
-    # downloading pictures from urls in the list    
-    for i in range(len(urls)):
-        try:
-            cont = download(url=urls[i], length=len(urls))
-            open(f'{i}.jpg', 'wb').write(cont)
-        except:
-            os.remove(f'{i}.jpg')
+    download(urls)
+    return urls
 
