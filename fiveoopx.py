@@ -59,7 +59,7 @@ def fivehundreddl():
 
     # extracting url from res_json and appending it to a list
     for i in range(0,23):
-        dl_link = res_json['data']['photos']['edges'][i]["node"]['images'][0]['url']
+        dl_link = res_json['data']['photos']['edges'][i]["node"]['images'][1]['url']
         #if the nudity lson is true that picture cintaions nudity
         nudity = res_json['data']['photos']['edges'][i]["node"]['notSafeForWork']
         urls.append([dl_link, nudity])
