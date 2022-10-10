@@ -57,15 +57,19 @@ def fivehundreddl():
     res_json = response.json()
 
 
-    # extracting url from res_json and appending it to a list
-    for i in range(0,23):
-        dl_link = res_json['data']['photos']['edges'][i]["node"]['images'][1]['url']
-        #if the nudity lson is true that picture cintaions nudity
-        nudity = res_json['data']['photos']['edges'][i]["node"]['notSafeForWork']
-        urls.append([dl_link, nudity])
-        # print(dl_link+ '\n')
+    try:
+        for i in range(0,23):
+            dl_link = res_json['data']['photos']['edges'][i]["node"]['images'][1]['url']
+            #if the nudity lson is true that picture cintaions nudity
+            nudity = res_json['data']['photos']['edges'][i]["node"]['notSafeForWork']
+            vertical = res_json['data']['photos']['edges'][i]["node"]['tags'][0]
+            # print(vertical + '\n')
+            urls.append([dl_link, nudity, vertical])
+            # print(dl_link+str(i)+ '\n')
+
+    except:
+        pass
 
 
     download(urls)
     return urls
-
